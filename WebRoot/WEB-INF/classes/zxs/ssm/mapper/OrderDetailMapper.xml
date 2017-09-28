@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zxs.ssm.mapper.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="zxs.ssm.po.OrderDetail" >
+    <id column="Detail_Id" property="detailId" jdbcType="INTEGER" />
+    <result column="Order_Num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="Commodity_Marque" property="commodityMarque" jdbcType="VARCHAR" />
+    <result column="Commodity_Num" property="commodityNum" jdbcType="INTEGER" />
+    <result column="Detail_ZT" property="detailZt" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Detail_Id, Order_Num, Commodity_Marque, Commodity_Num, Detail_ZT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="zxs.ssm.po.OrderDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_detail
+    where Detail_Id = #{detailId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_detail
+    where Detail_Id = #{detailId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="zxs.ssm.po.OrderDetailExample" >
+    delete from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="zxs.ssm.po.OrderDetail" >
+    insert into order_detail (Detail_Id, Order_Num, Commodity_Marque, 
+      Commodity_Num, Detail_ZT)
+    values (#{detailId,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{commodityMarque,jdbcType=VARCHAR}, 
+      #{commodityNum,jdbcType=INTEGER}, #{detailZt,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="zxs.ssm.po.OrderDetail" >
+    insert into order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        Detail_Id,
+      </if>
+      <if test="orderNum != null" >
+        Order_Num,
+      </if>
+      <if test="commodityMarque != null" >
+        Commodity_Marque,
+      </if>
+      <if test="commodityNum != null" >
+        Commodity_Num,
+      </if>
+      <if test="detailZt != null" >
+        Detail_ZT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        #{detailId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityMarque != null" >
+        #{commodityMarque,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityNum != null" >
+        #{commodityNum,jdbcType=INTEGER},
+      </if>
+      <if test="detailZt != null" >
+        #{detailZt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="zxs.ssm.po.OrderDetailExample" resultType="java.lang.Integer" >
+    select count(*) from order_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_detail
+    <set >
+      <if test="record.detailId != null" >
+        Detail_Id = #{record.detailId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNum != null" >
+        Order_Num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commodityMarque != null" >
+        Commodity_Marque = #{record.commodityMarque,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commodityNum != null" >
+        Commodity_Num = #{record.commodityNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.detailZt != null" >
+        Detail_ZT = #{record.detailZt,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_detail
+    set Detail_Id = #{record.detailId,jdbcType=INTEGER},
+      Order_Num = #{record.orderNum,jdbcType=VARCHAR},
+      Commodity_Marque = #{record.commodityMarque,jdbcType=VARCHAR},
+      Commodity_Num = #{record.commodityNum,jdbcType=INTEGER},
+      Detail_ZT = #{record.detailZt,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="zxs.ssm.po.OrderDetail" >
+    update order_detail
+    <set >
+      <if test="orderNum != null" >
+        Order_Num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityMarque != null" >
+        Commodity_Marque = #{commodityMarque,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityNum != null" >
+        Commodity_Num = #{commodityNum,jdbcType=INTEGER},
+      </if>
+      <if test="detailZt != null" >
+        Detail_ZT = #{detailZt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Detail_Id = #{detailId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zxs.ssm.po.OrderDetail" >
+    update order_detail
+    set Order_Num = #{orderNum,jdbcType=VARCHAR},
+      Commodity_Marque = #{commodityMarque,jdbcType=VARCHAR},
+      Commodity_Num = #{commodityNum,jdbcType=INTEGER},
+      Detail_ZT = #{detailZt,jdbcType=INTEGER}
+    where Detail_Id = #{detailId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 以下是自定义sql -->
+  <delete id="deleteOrderDetailByOderNum" parameterType="java.lang.String" >
+    delete from order_detail where Order_Num = #{orderNum,jdbcType=VARCHAR}
+  </delete>
+</mapper>

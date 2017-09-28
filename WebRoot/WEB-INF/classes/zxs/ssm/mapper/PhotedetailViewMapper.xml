@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zxs.ssm.mapper.PhotedetailViewMapper" >
+  <resultMap id="BaseResultMap" type="zxs.ssm.po.PhotedetailView" >
+    <result column="Photo_Id" property="photoId" jdbcType="INTEGER" />
+    <result column="Order_Num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="Relation_Num" property="relationNum" jdbcType="VARCHAR" />
+    <result column="Photo" property="photo" jdbcType="VARCHAR" />
+    <result column="User_Name" property="userName" jdbcType="VARCHAR" />
+    <result column="Commit_Time" property="commitTime" jdbcType="VARCHAR" />
+    <result column="Photo_Type" property="photoType" jdbcType="VARCHAR" />
+    <result column="Photo_BZ" property="photoBz" jdbcType="VARCHAR" />
+    <result column="Photo_ZT" property="photoZt" jdbcType="INTEGER" />
+    <result column="Customer_Name" property="customerName" jdbcType="VARCHAR" />
+    <result column="Telephone1" property="telephone1" jdbcType="VARCHAR" />
+    <result column="Telephone2" property="telephone2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Photo_Id, Order_Num, Relation_Num, Photo, User_Name, Commit_Time, Photo_Type, Photo_BZ, 
+    Photo_ZT, Customer_Name, Telephone1, Telephone2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="zxs.ssm.po.PhotedetailViewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from photedetail_view
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="zxs.ssm.po.PhotedetailViewExample" >
+    delete from photedetail_view
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="zxs.ssm.po.PhotedetailView" >
+    insert into photedetail_view (Photo_Id, Order_Num, Relation_Num, 
+      Photo, User_Name, Commit_Time, 
+      Photo_Type, Photo_BZ, Photo_ZT, 
+      Customer_Name, Telephone1, Telephone2
+      )
+    values (#{photoId,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{relationNum,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{commitTime,jdbcType=VARCHAR}, 
+      #{photoType,jdbcType=VARCHAR}, #{photoBz,jdbcType=VARCHAR}, #{photoZt,jdbcType=INTEGER}, 
+      #{customerName,jdbcType=VARCHAR}, #{telephone1,jdbcType=VARCHAR}, #{telephone2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zxs.ssm.po.PhotedetailView" >
+    insert into photedetail_view
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="photoId != null" >
+        Photo_Id,
+      </if>
+      <if test="orderNum != null" >
+        Order_Num,
+      </if>
+      <if test="relationNum != null" >
+        Relation_Num,
+      </if>
+      <if test="photo != null" >
+        Photo,
+      </if>
+      <if test="userName != null" >
+        User_Name,
+      </if>
+      <if test="commitTime != null" >
+        Commit_Time,
+      </if>
+      <if test="photoType != null" >
+        Photo_Type,
+      </if>
+      <if test="photoBz != null" >
+        Photo_BZ,
+      </if>
+      <if test="photoZt != null" >
+        Photo_ZT,
+      </if>
+      <if test="customerName != null" >
+        Customer_Name,
+      </if>
+      <if test="telephone1 != null" >
+        Telephone1,
+      </if>
+      <if test="telephone2 != null" >
+        Telephone2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="photoId != null" >
+        #{photoId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="relationNum != null" >
+        #{relationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="commitTime != null" >
+        #{commitTime,jdbcType=VARCHAR},
+      </if>
+      <if test="photoType != null" >
+        #{photoType,jdbcType=VARCHAR},
+      </if>
+      <if test="photoBz != null" >
+        #{photoBz,jdbcType=VARCHAR},
+      </if>
+      <if test="photoZt != null" >
+        #{photoZt,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone1 != null" >
+        #{telephone1,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone2 != null" >
+        #{telephone2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="zxs.ssm.po.PhotedetailViewExample" resultType="java.lang.Integer" >
+    select count(*) from photedetail_view
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update photedetail_view
+    <set >
+      <if test="record.photoId != null" >
+        Photo_Id = #{record.photoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNum != null" >
+        Order_Num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationNum != null" >
+        Relation_Num = #{record.relationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null" >
+        Photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        User_Name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commitTime != null" >
+        Commit_Time = #{record.commitTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoType != null" >
+        Photo_Type = #{record.photoType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoBz != null" >
+        Photo_BZ = #{record.photoBz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoZt != null" >
+        Photo_ZT = #{record.photoZt,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerName != null" >
+        Customer_Name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone1 != null" >
+        Telephone1 = #{record.telephone1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone2 != null" >
+        Telephone2 = #{record.telephone2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update photedetail_view
+    set Photo_Id = #{record.photoId,jdbcType=INTEGER},
+      Order_Num = #{record.orderNum,jdbcType=VARCHAR},
+      Relation_Num = #{record.relationNum,jdbcType=VARCHAR},
+      Photo = #{record.photo,jdbcType=VARCHAR},
+      User_Name = #{record.userName,jdbcType=VARCHAR},
+      Commit_Time = #{record.commitTime,jdbcType=VARCHAR},
+      Photo_Type = #{record.photoType,jdbcType=VARCHAR},
+      Photo_BZ = #{record.photoBz,jdbcType=VARCHAR},
+      Photo_ZT = #{record.photoZt,jdbcType=INTEGER},
+      Customer_Name = #{record.customerName,jdbcType=VARCHAR},
+      Telephone1 = #{record.telephone1,jdbcType=VARCHAR},
+      Telephone2 = #{record.telephone2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zxs.ssm.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="zxs.ssm.po.Department" >
+    <id column="Dep_Id" property="depId" jdbcType="VARCHAR" />
+    <result column="Dep_name" property="depName" jdbcType="VARCHAR" />
+    <result column="Dep_sort" property="depSort" jdbcType="INTEGER" />
+    <result column="Dep_remark" property="depRemark" jdbcType="VARCHAR" />
+    <result column="Dep_queue" property="depQueue" jdbcType="INTEGER" />
+    <result column="Dep_assess" property="depAssess" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Dep_Id, Dep_name, Dep_sort, Dep_remark, Dep_queue, Dep_assess
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="zxs.ssm.po.DepartmentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from department
+    where Dep_Id = #{depId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from department
+    where Dep_Id = #{depId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="zxs.ssm.po.DepartmentExample" >
+    delete from department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="zxs.ssm.po.Department" >
+    insert into department (Dep_Id, Dep_name, Dep_sort, 
+      Dep_remark, Dep_queue, Dep_assess
+      )
+    values (#{depId,jdbcType=VARCHAR}, #{depName,jdbcType=VARCHAR}, #{depSort,jdbcType=INTEGER}, 
+      #{depRemark,jdbcType=VARCHAR}, #{depQueue,jdbcType=INTEGER}, #{depAssess,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zxs.ssm.po.Department" >
+    insert into department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="depId != null" >
+        Dep_Id,
+      </if>
+      <if test="depName != null" >
+        Dep_name,
+      </if>
+      <if test="depSort != null" >
+        Dep_sort,
+      </if>
+      <if test="depRemark != null" >
+        Dep_remark,
+      </if>
+      <if test="depQueue != null" >
+        Dep_queue,
+      </if>
+      <if test="depAssess != null" >
+        Dep_assess,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="depId != null" >
+        #{depId,jdbcType=VARCHAR},
+      </if>
+      <if test="depName != null" >
+        #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="depSort != null" >
+        #{depSort,jdbcType=INTEGER},
+      </if>
+      <if test="depRemark != null" >
+        #{depRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="depQueue != null" >
+        #{depQueue,jdbcType=INTEGER},
+      </if>
+      <if test="depAssess != null" >
+        #{depAssess,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="zxs.ssm.po.DepartmentExample" resultType="java.lang.Integer" >
+    select count(*) from department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update department
+    <set >
+      <if test="record.depId != null" >
+        Dep_Id = #{record.depId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depName != null" >
+        Dep_name = #{record.depName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depSort != null" >
+        Dep_sort = #{record.depSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.depRemark != null" >
+        Dep_remark = #{record.depRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depQueue != null" >
+        Dep_queue = #{record.depQueue,jdbcType=INTEGER},
+      </if>
+      <if test="record.depAssess != null" >
+        Dep_assess = #{record.depAssess,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update department
+    set Dep_Id = #{record.depId,jdbcType=VARCHAR},
+      Dep_name = #{record.depName,jdbcType=VARCHAR},
+      Dep_sort = #{record.depSort,jdbcType=INTEGER},
+      Dep_remark = #{record.depRemark,jdbcType=VARCHAR},
+      Dep_queue = #{record.depQueue,jdbcType=INTEGER},
+      Dep_assess = #{record.depAssess,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="zxs.ssm.po.Department" >
+    update department
+    <set >
+      <if test="depName != null" >
+        Dep_name = #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="depSort != null" >
+        Dep_sort = #{depSort,jdbcType=INTEGER},
+      </if>
+      <if test="depRemark != null" >
+        Dep_remark = #{depRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="depQueue != null" >
+        Dep_queue = #{depQueue,jdbcType=INTEGER},
+      </if>
+      <if test="depAssess != null" >
+        Dep_assess = #{depAssess,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Dep_Id = #{depId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zxs.ssm.po.Department" >
+    update department
+    set Dep_name = #{depName,jdbcType=VARCHAR},
+      Dep_sort = #{depSort,jdbcType=INTEGER},
+      Dep_remark = #{depRemark,jdbcType=VARCHAR},
+      Dep_queue = #{depQueue,jdbcType=INTEGER},
+      Dep_assess = #{depAssess,jdbcType=INTEGER}
+    where Dep_Id = #{depId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 自己添加的方法 -->
+  <select id="selectDepNameList" resultType="java.lang.String">
+    select DISTINCT Dep_name from department order by Dep_name ASC
+  </select>
+</mapper>

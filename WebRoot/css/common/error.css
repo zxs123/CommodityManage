@@ -1,0 +1,121 @@
+@CHARSET "UTF-8";
+
+.col01 {
+    margin: 0 auto;
+    padding-top: 20px;
+    width: 1000px;
+}
+.ifengLogo, .topic {
+    float: left;
+    padding-right: 20px;
+}
+.tips404 {
+background: url(../../images/common/error.jpg) no-repeat 70px 45px;
+padding: 45px 0 0 510px;
+height: 290px;
+}
+.tips404 h1 {
+    color: #4c4c4c;
+    font: 26px/26px Microsoft Yahei;
+    padding-bottom: 8px;
+}
+.tips404 h1 span {
+    color: #aaa;
+    font: 16px/24px Arial,Helvetica,sans-serif;
+}
+.tips404 li {
+    background: url("") no-repeat scroll 0 9px rgba(0, 0, 0, 0);
+    color: #aaa;
+    font: 14px/24px simsun;
+    padding-left: 15px;
+}
+.tips404 h4 {
+    padding: 25px 0 30px;
+}
+.tips404 h3 {
+    color: #c5c5c5;
+    font: 14px/24px simsun;
+}
+.tips404 h3 span {
+    background: url("") no-repeat scroll 0 -26px rgba(0, 0, 0, 0);
+    padding-left: 18px;
+}
+.col02 {
+    background: none repeat scroll 0 0 #f1f1f1;
+    border: 1px solid #d7d7d7;
+    height: 280px;
+    margin: 0 auto 20px;
+    padding: 50px 0 0 120px;
+    position: relative;
+    width: 878px;
+}
+.corner {
+    background: url("") no-repeat scroll left top rgba(0, 0, 0, 0);
+    height: 61px;
+    left: 120px;
+    position: absolute;
+    top: 50px;
+    width: 23px;
+}
+.corner2 {
+    background: url(" y2.ifengimg.com/8cbe73a7378dafdb/2014/0715/pic04.gif") no-repeat scroll left top rgba(0, 0, 0, 0);
+    height: 33px;
+    left: 313px;
+    position: absolute;
+    top: 50px;
+    width: 8px;
+}
+.footer {
+    margin: 0 auto;
+    width: 1000px;
+}
+.footer .footlink {
+    border-top: 1px solid #fff;
+    color: #000;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    padding-top: 15px;
+}
+.footer .footlink a {
+    color: #000;
+}
+.footer .footlink span {
+    padding: 0 5px;
+}
+.footer .fk_l {
+    float: left;
+}
+.footer .fk_r {
+    float: right;
+    width: 200px;
+}
+.footer .fk_r ul {
+    overflow: hidden;
+}
+.footer .fk_r ul li {
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+}
+.footer .fk_r ul .l_bg001 {
+    background: url(" y1.ifengimg.com/38716b164e0f5e63/2013/0716/nav0416_14.gif") no-repeat scroll left 9px rgba(0, 0, 0, 0);
+    padding-left: 19px;
+}
+.footer .fk_r ul .l_bg002 {
+    background: url(" y3.ifengimg.com/9db17ab793eef980/2013/0403/nav0416_17.gif") no-repeat scroll left 9px rgba(0, 0, 0, 0);
+    margin-left: 18px;
+    padding-left: 17px;
+}
+.footer .copyright {
+    color: #666;
+    font-family: Arial;
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    text-align: center;
+}
+.footer .copyright span {
+    font-family: "宋体";
+}

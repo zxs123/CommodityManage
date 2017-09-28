@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zxs.ssm.mapper.SystemroleMapper" >
+  <resultMap id="BaseResultMap" type="zxs.ssm.po.Systemrole" >
+    <id column="SR_Id" property="srId" jdbcType="INTEGER" />
+    <result column="SR_name" property="srName" jdbcType="VARCHAR" />
+    <result column="SR_reid" property="srReid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SR_Id, SR_name, SR_reid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="zxs.ssm.po.SystemroleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from systemrole
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from systemrole
+    where SR_Id = #{srId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from systemrole
+    where SR_Id = #{srId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="zxs.ssm.po.SystemroleExample" >
+    delete from systemrole
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="zxs.ssm.po.Systemrole">
+	<selectKey keyProperty="srId" resultType="java.lang.Integer">
+		select LAST_INSERT_ID()
+	</selectKey>
+	insert into systemrole (SR_Id, SR_name, SR_reid
+	)
+	values (#{srId,jdbcType=INTEGER}, #{srName,jdbcType=VARCHAR},
+	#{srReid,jdbcType=VARCHAR}
+	)
+</insert>
+  <insert id="insertSelective" parameterType="zxs.ssm.po.Systemrole" >
+    insert into systemrole
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="srId != null" >
+        SR_Id,
+      </if>
+      <if test="srName != null" >
+        SR_name,
+      </if>
+      <if test="srReid != null" >
+        SR_reid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="srId != null" >
+        #{srId,jdbcType=INTEGER},
+      </if>
+      <if test="srName != null" >
+        #{srName,jdbcType=VARCHAR},
+      </if>
+      <if test="srReid != null" >
+        #{srReid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="zxs.ssm.po.SystemroleExample" resultType="java.lang.Integer" >
+    select count(*) from systemrole
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update systemrole
+    <set >
+      <if test="record.srId != null" >
+        SR_Id = #{record.srId,jdbcType=INTEGER},
+      </if>
+      <if test="record.srName != null" >
+        SR_name = #{record.srName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srReid != null" >
+        SR_reid = #{record.srReid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update systemrole
+    set SR_Id = #{record.srId,jdbcType=INTEGER},
+      SR_name = #{record.srName,jdbcType=VARCHAR},
+      SR_reid = #{record.srReid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="zxs.ssm.po.Systemrole" >
+    update systemrole
+    <set >
+      <if test="srName != null" >
+        SR_name = #{srName,jdbcType=VARCHAR},
+      </if>
+      <if test="srReid != null" >
+        SR_reid = #{srReid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SR_Id = #{srId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zxs.ssm.po.Systemrole" >
+    update systemrole
+    set SR_name = #{srName,jdbcType=VARCHAR},
+      SR_reid = #{srReid,jdbcType=VARCHAR}
+    where SR_Id = #{srId,jdbcType=INTEGER}
+  </update>
+</mapper>

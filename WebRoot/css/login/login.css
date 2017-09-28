@@ -1,0 +1,104 @@
+@charset "utf-8";
+body {
+		filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#004574,endcolorstr=#175f8f,gradientType=0);
+}
+A:link {
+    color: #a9dcff;
+    text-decoration: none;
+}
+A:visited {
+    color: #a9dcff;
+    text-decoration: none;
+}
+#CenterAreaBg {
+    background: url("../../images/login/login_bg.gif") repeat-x;
+    float: left;
+    height: 569px;
+    width: 100%;
+}
+#CenterArea {
+    background: url("../../images/login/login.gif") no-repeat;
+    float: left;
+    height: 569px;
+    left: 200px;
+    position: absolute;
+    width: 776px;
+}
+#LogoImg {
+    float: left;
+    padding-left: 180px;
+    padding-top: 200px;
+    width: 100%;
+}
+#LoginInfo {
+    float: left;
+    height: 145px;
+    padding-left: 180px;
+    padding-top: 30px;
+    width: 360px;
+}
+#LoginInfo tr {
+    height: 23px;
+}
+.Subject {
+    color: #a7c4d7;
+    font-family: "";
+    font-size: 11pt;
+    padding-left: 15px;
+    padding-right: 9px;
+    text-align: justify;
+}
+.TextField {
+    color: #1e71a8;
+    font-size: 12px;
+    height: 19px;
+    padding-right: 9px;
+    width: 168px;
+}
+.PopUpButton {
+    color: #1e71a8;
+    font-size: 12px;
+    height: 19px;
+    padding-right: 9px;
+    width: 126px;
+}
+#LoginBtn {
+    float: right;
+    padding-right: 270px;
+    padding-top: 30px;
+    width: 100px;
+}
+#ImgCode {
+    float: left;
+    padding-left: 2px;
+    padding-top: 1px;
+}
+.TextField_ImgCode {
+    color: #1e71a8;
+    font-size: 12px;
+    height: 19px;
+    width: 105px;
+}
+#CopyRight {
+    color: #4c91bf;
+    float: left;
+    font-size: 12px;
+    padding-left: 450px;
+    padding-top: 25px;
+}
+#CopyRight A:link {
+    color: #4c91bf;
+    text-decoration: none;
+}
+#CopyRight A:visited {
+    color: #4c91bf;
+    text-decoration: none;
+}
+#CopyRight A:active {
+    color: #4c91bf;
+    text-decoration: none;
+}
+#CopyRight A:hover {
+    color: #4c91bf;
+    text-decoration: none;
+}

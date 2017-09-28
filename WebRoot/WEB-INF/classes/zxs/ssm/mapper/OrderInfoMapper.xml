@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zxs.ssm.mapper.OrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="zxs.ssm.po.OrderInfo" >
+    <id column="Order_Num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="Create_Time" property="createTime" jdbcType="VARCHAR" />
+    <result column="User_Id" property="userId" jdbcType="VARCHAR" />
+    <result column="Send_Time" property="sendTime" jdbcType="VARCHAR" />
+    <result column="Is_Sent" property="isSent" jdbcType="INTEGER" />
+    <result column="Sent_User" property="sentUser" jdbcType="VARCHAR" />
+    <result column="Is_Query" property="isQuery" jdbcType="INTEGER" />
+    <result column="Is_Return" property="isReturn" jdbcType="INTEGER" />
+    <result column="Return_Time" property="returnTime" jdbcType="VARCHAR" />
+    <result column="Return_User" property="returnUser" jdbcType="VARCHAR" />
+    <result column="Last_UpdateTime" property="lastUpdatetime" jdbcType="VARCHAR" />
+    <result column="Last_UpdateUser" property="lastUpdateuser" jdbcType="VARCHAR" />
+    <result column="Customer_Name" property="customerName" jdbcType="VARCHAR" />
+    <result column="Telephone1" property="telephone1" jdbcType="VARCHAR" />
+    <result column="Telephone2" property="telephone2" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Order_Type" property="orderType" jdbcType="VARCHAR" />
+    <result column="Order_BZ" property="orderBz" jdbcType="VARCHAR" />
+    <result column="Order_ZT" property="orderZt" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Order_Num, Create_Time, User_Id, Send_Time, Is_Sent, Sent_User, Is_Query, Is_Return, 
+    Return_Time, Return_User, Last_UpdateTime, Last_UpdateUser, Customer_Name, Telephone1, 
+    Telephone2, Address, Order_Type, Order_BZ, Order_ZT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="zxs.ssm.po.OrderInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where Order_Num = #{orderNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_info
+    where Order_Num = #{orderNum,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="zxs.ssm.po.OrderInfoExample" >
+    delete from order_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="zxs.ssm.po.OrderInfo" >
+    insert into order_info (Order_Num, Create_Time, User_Id, 
+      Send_Time, Is_Sent, Sent_User, 
+      Is_Query, Is_Return, Return_Time, 
+      Return_User, Last_UpdateTime, Last_UpdateUser, 
+      Customer_Name, Telephone1, Telephone2, 
+      Address, Order_Type, Order_BZ, 
+      Order_ZT)
+    values (#{orderNum,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{sendTime,jdbcType=VARCHAR}, #{isSent,jdbcType=INTEGER}, #{sentUser,jdbcType=VARCHAR}, 
+      #{isQuery,jdbcType=INTEGER}, #{isReturn,jdbcType=INTEGER}, #{returnTime,jdbcType=VARCHAR}, 
+      #{returnUser,jdbcType=VARCHAR}, #{lastUpdatetime,jdbcType=VARCHAR}, #{lastUpdateuser,jdbcType=VARCHAR}, 
+      #{customerName,jdbcType=VARCHAR}, #{telephone1,jdbcType=VARCHAR}, #{telephone2,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, #{orderBz,jdbcType=VARCHAR}, 
+      #{orderZt,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="zxs.ssm.po.OrderInfo" >
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderNum != null" >
+        Order_Num,
+      </if>
+      <if test="createTime != null" >
+        Create_Time,
+      </if>
+      <if test="userId != null" >
+        User_Id,
+      </if>
+      <if test="sendTime != null" >
+        Send_Time,
+      </if>
+      <if test="isSent != null" >
+        Is_Sent,
+      </if>
+      <if test="sentUser != null" >
+        Sent_User,
+      </if>
+      <if test="isQuery != null" >
+        Is_Query,
+      </if>
+      <if test="isReturn != null" >
+        Is_Return,
+      </if>
+      <if test="returnTime != null" >
+        Return_Time,
+      </if>
+      <if test="returnUser != null" >
+        Return_User,
+      </if>
+      <if test="lastUpdatetime != null" >
+        Last_UpdateTime,
+      </if>
+      <if test="lastUpdateuser != null" >
+        Last_UpdateUser,
+      </if>
+      <if test="customerName != null" >
+        Customer_Name,
+      </if>
+      <if test="telephone1 != null" >
+        Telephone1,
+      </if>
+      <if test="telephone2 != null" >
+        Telephone2,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="orderType != null" >
+        Order_Type,
+      </if>
+      <if test="orderBz != null" >
+        Order_BZ,
+      </if>
+      <if test="orderZt != null" >
+        Order_ZT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isSent != null" >
+        #{isSent,jdbcType=INTEGER},
+      </if>
+      <if test="sentUser != null" >
+        #{sentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isQuery != null" >
+        #{isQuery,jdbcType=INTEGER},
+      </if>
+      <if test="isReturn != null" >
+        #{isReturn,jdbcType=INTEGER},
+      </if>
+      <if test="returnTime != null" >
+        #{returnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUser != null" >
+        #{returnUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatetime != null" >
+        #{lastUpdatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateuser != null" >
+        #{lastUpdateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone1 != null" >
+        #{telephone1,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone2 != null" >
+        #{telephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBz != null" >
+        #{orderBz,jdbcType=VARCHAR},
+      </if>
+      <if test="orderZt != null" >
+        #{orderZt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="zxs.ssm.po.OrderInfoExample" resultType="java.lang.Integer" >
+    select count(*) from order_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_info
+    <set >
+      <if test="record.orderNum != null" >
+        Order_Num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        Create_Time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        User_Id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendTime != null" >
+        Send_Time = #{record.sendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSent != null" >
+        Is_Sent = #{record.isSent,jdbcType=INTEGER},
+      </if>
+      <if test="record.sentUser != null" >
+        Sent_User = #{record.sentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isQuery != null" >
+        Is_Query = #{record.isQuery,jdbcType=INTEGER},
+      </if>
+      <if test="record.isReturn != null" >
+        Is_Return = #{record.isReturn,jdbcType=INTEGER},
+      </if>
+      <if test="record.returnTime != null" >
+        Return_Time = #{record.returnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnUser != null" >
+        Return_User = #{record.returnUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdatetime != null" >
+        Last_UpdateTime = #{record.lastUpdatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateuser != null" >
+        Last_UpdateUser = #{record.lastUpdateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerName != null" >
+        Customer_Name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone1 != null" >
+        Telephone1 = #{record.telephone1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone2 != null" >
+        Telephone2 = #{record.telephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        Address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderType != null" >
+        Order_Type = #{record.orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderBz != null" >
+        Order_BZ = #{record.orderBz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderZt != null" >
+        Order_ZT = #{record.orderZt,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_info
+    set Order_Num = #{record.orderNum,jdbcType=VARCHAR},
+      Create_Time = #{record.createTime,jdbcType=VARCHAR},
+      User_Id = #{record.userId,jdbcType=VARCHAR},
+      Send_Time = #{record.sendTime,jdbcType=VARCHAR},
+      Is_Sent = #{record.isSent,jdbcType=INTEGER},
+      Sent_User = #{record.sentUser,jdbcType=VARCHAR},
+      Is_Query = #{record.isQuery,jdbcType=INTEGER},
+      Is_Return = #{record.isReturn,jdbcType=INTEGER},
+      Return_Time = #{record.returnTime,jdbcType=VARCHAR},
+      Return_User = #{record.returnUser,jdbcType=VARCHAR},
+      Last_UpdateTime = #{record.lastUpdatetime,jdbcType=VARCHAR},
+      Last_UpdateUser = #{record.lastUpdateuser,jdbcType=VARCHAR},
+      Customer_Name = #{record.customerName,jdbcType=VARCHAR},
+      Telephone1 = #{record.telephone1,jdbcType=VARCHAR},
+      Telephone2 = #{record.telephone2,jdbcType=VARCHAR},
+      Address = #{record.address,jdbcType=VARCHAR},
+      Order_Type = #{record.orderType,jdbcType=VARCHAR},
+      Order_BZ = #{record.orderBz,jdbcType=VARCHAR},
+      Order_ZT = #{record.orderZt,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="zxs.ssm.po.OrderInfo" >
+    update order_info
+    <set >
+      <if test="createTime != null" >
+        Create_Time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        User_Id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        Send_Time = #{sendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isSent != null" >
+        Is_Sent = #{isSent,jdbcType=INTEGER},
+      </if>
+      <if test="sentUser != null" >
+        Sent_User = #{sentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isQuery != null" >
+        Is_Query = #{isQuery,jdbcType=INTEGER},
+      </if>
+      <if test="isReturn != null" >
+        Is_Return = #{isReturn,jdbcType=INTEGER},
+      </if>
+      <if test="returnTime != null" >
+        Return_Time = #{returnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUser != null" >
+        Return_User = #{returnUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatetime != null" >
+        Last_UpdateTime = #{lastUpdatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateuser != null" >
+        Last_UpdateUser = #{lastUpdateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        Customer_Name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone1 != null" >
+        Telephone1 = #{telephone1,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone2 != null" >
+        Telephone2 = #{telephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        Order_Type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBz != null" >
+        Order_BZ = #{orderBz,jdbcType=VARCHAR},
+      </if>
+      <if test="orderZt != null" >
+        Order_ZT = #{orderZt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Order_Num = #{orderNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zxs.ssm.po.OrderInfo" >
+    update order_info
+    set Create_Time = #{createTime,jdbcType=VARCHAR},
+      User_Id = #{userId,jdbcType=VARCHAR},
+      Send_Time = #{sendTime,jdbcType=VARCHAR},
+      Is_Sent = #{isSent,jdbcType=INTEGER},
+      Sent_User = #{sentUser,jdbcType=VARCHAR},
+      Is_Query = #{isQuery,jdbcType=INTEGER},
+      Is_Return = #{isReturn,jdbcType=INTEGER},
+      Return_Time = #{returnTime,jdbcType=VARCHAR},
+      Return_User = #{returnUser,jdbcType=VARCHAR},
+      Last_UpdateTime = #{lastUpdatetime,jdbcType=VARCHAR},
+      Last_UpdateUser = #{lastUpdateuser,jdbcType=VARCHAR},
+      Customer_Name = #{customerName,jdbcType=VARCHAR},
+      Telephone1 = #{telephone1,jdbcType=VARCHAR},
+      Telephone2 = #{telephone2,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Order_Type = #{orderType,jdbcType=VARCHAR},
+      Order_BZ = #{orderBz,jdbcType=VARCHAR},
+      Order_ZT = #{orderZt,jdbcType=INTEGER}
+    where Order_Num = #{orderNum,jdbcType=VARCHAR}
+  </update>
+  
+    <!-- 以下是自定义SQL -->
+  <select id="selectLastOrderNum" parameterType="java.lang.String" resultType="java.lang.String" >
+    select Order_Num from order_info where Order_Num like CONCAT(#{mkName}, '%') order by Order_Num DESC limit 1
+  </select>
+</mapper>

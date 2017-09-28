@@ -1,0 +1,127 @@
+
+
+
+ 
+ #Title_bar A:link {
+	COLOR: #0000ff; TEXT-DECORATION: none
+}
+#Title_bar A:visited {
+	COLOR: #0000ff; TEXT-DECORATION: none
+}
+#Title_bar A:active {
+	COLOR: #0000ff; TEXT-DECORATION: none
+}
+#Title_bar A:hover {
+	COLOR: #0000ff; TEXT-DECORATION: none;
+}
+
+#Title_bar {
+	height: 39px;
+	width: 100%;
+	/*float: left;*/
+	background: #8f65d8;
+	border-bottom: 7px solid #ffffff;
+}
+
+#Title_bar_Head {
+	float: left;
+	padding-left: 12px;
+	padding-top: 11px;
+}
+
+#Title_bar_bg {
+	float: left;
+	background: url(../../images/common/title_bar_bg.gif) no-repeat;
+	height: 21px;
+	width: 63px;
+}
+
+#Title_bar_bg_up {
+	float: left;
+	padding-top: 18px;
+	width: 63px;
+}
+
+#Title_bar_Tail {
+	float: right;
+	padding-top: 18px;
+}
+
+#Title_Head {
+	float: left;
+	background: url(../../images/common/title_bg_head.gif) no-repeat;
+	height: 28px;
+	width: 5px;
+}
+
+#Title {
+	float: left;
+	background: url(../../images/common/title_bg.gif) repeat-x;
+	height: 28px;
+	color: #004a7d;
+	font-size: 14px;
+	font-family: 宋体;
+	font-weight: bold;
+	padding-left: 3px;
+	padding-top: 8px;
+	padding-right: 30px;
+}
+
+#Title_End {
+	float: left;
+	background: url(../../images/common/title_bg_end.gif) no-repeat;
+	height: 28px;
+	width: 80px;
+}
+
+th {
+	font: 12px;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 2px 4px 4px 5px;
+	background-color: #ffffff;
+}
+/* 
+.title {
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	background-color: #efefef;
+	background: #CAE8EA no-repeat;
+}
+
+.sd{
+	background-color: #efefef;
+}
+
+.col {
+	border-top-style: none;
+}
+
+td {
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	font-size: 12px;
+	padding: 2px 2px 2px 2px;
+	
+	border: 1px solid solid black;
+    line-height: 30px;
+    text-align: center;
+}
+.input_bg {
+	font-family: "宋体";
+	font-size:12px;
+	background-image: url(../images/input_bg.jpg);
+	border: 1px solid #b8b8b8;
+}
+.mycss1 {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+} */

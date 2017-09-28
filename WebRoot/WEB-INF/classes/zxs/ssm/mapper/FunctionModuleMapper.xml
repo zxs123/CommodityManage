@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zxs.ssm.mapper.FunctionModuleMapper" >
+  <resultMap id="BaseResultMap" type="zxs.ssm.po.FunctionModule" >
+    <id column="FM_Id" property="fmId" jdbcType="INTEGER" />
+    <result column="FM_name" property="fmName" jdbcType="VARCHAR" />
+    <result column="FM_action" property="fmAction" jdbcType="VARCHAR" />
+    <result column="FM_category" property="fmCategory" jdbcType="INTEGER" />
+    <result column="FM_catename" property="fmCatename" jdbcType="VARCHAR" />
+    <result column="FM_remark" property="fmRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    FM_Id, FM_name, FM_action, FM_category, FM_catename, FM_remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="zxs.ssm.po.FunctionModuleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from FunctionModule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from FunctionModule
+    where FM_Id = #{fmId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from FunctionModule
+    where FM_Id = #{fmId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="zxs.ssm.po.FunctionModuleExample" >
+    delete from FunctionModule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="zxs.ssm.po.FunctionModule" >
+    insert into FunctionModule (FM_Id, FM_name, FM_action, 
+      FM_category, FM_catename, FM_remark
+      )
+    values (#{fmId,jdbcType=INTEGER}, #{fmName,jdbcType=VARCHAR}, #{fmAction,jdbcType=VARCHAR}, 
+      #{fmCategory,jdbcType=INTEGER}, #{fmCatename,jdbcType=VARCHAR}, #{fmRemark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zxs.ssm.po.FunctionModule" >
+    insert into FunctionModule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fmId != null" >
+        FM_Id,
+      </if>
+      <if test="fmName != null" >
+        FM_name,
+      </if>
+      <if test="fmAction != null" >
+        FM_action,
+      </if>
+      <if test="fmCategory != null" >
+        FM_category,
+      </if>
+      <if test="fmCatename != null" >
+        FM_catename,
+      </if>
+      <if test="fmRemark != null" >
+        FM_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fmId != null" >
+        #{fmId,jdbcType=INTEGER},
+      </if>
+      <if test="fmName != null" >
+        #{fmName,jdbcType=VARCHAR},
+      </if>
+      <if test="fmAction != null" >
+        #{fmAction,jdbcType=VARCHAR},
+      </if>
+      <if test="fmCategory != null" >
+        #{fmCategory,jdbcType=INTEGER},
+      </if>
+      <if test="fmCatename != null" >
+        #{fmCatename,jdbcType=VARCHAR},
+      </if>
+      <if test="fmRemark != null" >
+        #{fmRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="zxs.ssm.po.FunctionModuleExample" resultType="java.lang.Integer" >
+    select count(*) from FunctionModule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update FunctionModule
+    <set >
+      <if test="record.fmId != null" >
+        FM_Id = #{record.fmId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fmName != null" >
+        FM_name = #{record.fmName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fmAction != null" >
+        FM_action = #{record.fmAction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fmCategory != null" >
+        FM_category = #{record.fmCategory,jdbcType=INTEGER},
+      </if>
+      <if test="record.fmCatename != null" >
+        FM_catename = #{record.fmCatename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fmRemark != null" >
+        FM_remark = #{record.fmRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update FunctionModule
+    set FM_Id = #{record.fmId,jdbcType=INTEGER},
+      FM_name = #{record.fmName,jdbcType=VARCHAR},
+      FM_action = #{record.fmAction,jdbcType=VARCHAR},
+      FM_category = #{record.fmCategory,jdbcType=INTEGER},
+      FM_catename = #{record.fmCatename,jdbcType=VARCHAR},
+      FM_remark = #{record.fmRemark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="zxs.ssm.po.FunctionModule" >
+    update FunctionModule
+    <set >
+      <if test="fmName != null" >
+        FM_name = #{fmName,jdbcType=VARCHAR},
+      </if>
+      <if test="fmAction != null" >
+        FM_action = #{fmAction,jdbcType=VARCHAR},
+      </if>
+      <if test="fmCategory != null" >
+        FM_category = #{fmCategory,jdbcType=INTEGER},
+      </if>
+      <if test="fmCatename != null" >
+        FM_catename = #{fmCatename,jdbcType=VARCHAR},
+      </if>
+      <if test="fmRemark != null" >
+        FM_remark = #{fmRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FM_Id = #{fmId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zxs.ssm.po.FunctionModule" >
+    update FunctionModule
+    set FM_name = #{fmName,jdbcType=VARCHAR},
+      FM_action = #{fmAction,jdbcType=VARCHAR},
+      FM_category = #{fmCategory,jdbcType=INTEGER},
+      FM_catename = #{fmCatename,jdbcType=VARCHAR},
+      FM_remark = #{fmRemark,jdbcType=VARCHAR}
+    where FM_Id = #{fmId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAll" resultType="zxs.ssm.po.FunctionModule">
+  	select * from FunctionModule
+  </select>
+</mapper>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zxs.ssm.mapper.ExpressInfoMapper" >
+  <resultMap id="BaseResultMap" type="zxs.ssm.po.ExpressInfo" >
+    <id column="Order_Num" property="orderNum" jdbcType="VARCHAR" />
+    <id column="Express_Num" property="expressNum" jdbcType="VARCHAR" />
+    <result column="Express_Company" property="expressCompany" jdbcType="VARCHAR" />
+    <result column="Express_Cost" property="expressCost" jdbcType="DOUBLE" />
+    <result column="Update_User" property="updateUser" jdbcType="VARCHAR" />
+    <result column="Update_Time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="Express_ZT" property="expressZt" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Order_Num, Express_Num, Express_Company, Express_Cost, Update_User, Update_Time, 
+    Express_ZT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="zxs.ssm.po.ExpressInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from express_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="zxs.ssm.po.ExpressInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from express_info
+    where Order_Num = #{orderNum,jdbcType=VARCHAR}
+      and Express_Num = #{expressNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="zxs.ssm.po.ExpressInfoKey" >
+    delete from express_info
+    where Order_Num = #{orderNum,jdbcType=VARCHAR}
+      and Express_Num = #{expressNum,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="zxs.ssm.po.ExpressInfoExample" >
+    delete from express_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="zxs.ssm.po.ExpressInfo" >
+    insert into express_info (Order_Num, Express_Num, Express_Company, 
+      Express_Cost, Update_User, Update_Time, 
+      Express_ZT)
+    values (#{orderNum,jdbcType=VARCHAR}, #{expressNum,jdbcType=VARCHAR}, #{expressCompany,jdbcType=VARCHAR}, 
+      #{expressCost,jdbcType=DOUBLE}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{expressZt,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="zxs.ssm.po.ExpressInfo" >
+    insert into express_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderNum != null" >
+        Order_Num,
+      </if>
+      <if test="expressNum != null" >
+        Express_Num,
+      </if>
+      <if test="expressCompany != null" >
+        Express_Company,
+      </if>
+      <if test="expressCost != null" >
+        Express_Cost,
+      </if>
+      <if test="updateUser != null" >
+        Update_User,
+      </if>
+      <if test="updateTime != null" >
+        Update_Time,
+      </if>
+      <if test="expressZt != null" >
+        Express_ZT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNum != null" >
+        #{expressNum,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCost != null" >
+        #{expressCost,jdbcType=DOUBLE},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expressZt != null" >
+        #{expressZt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="zxs.ssm.po.ExpressInfoExample" resultType="java.lang.Integer" >
+    select count(*) from express_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update express_info
+    <set >
+      <if test="record.orderNum != null" >
+        Order_Num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressNum != null" >
+        Express_Num = #{record.expressNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressCompany != null" >
+        Express_Company = #{record.expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressCost != null" >
+        Express_Cost = #{record.expressCost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.updateUser != null" >
+        Update_User = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        Update_Time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressZt != null" >
+        Express_ZT = #{record.expressZt,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update express_info
+    set Order_Num = #{record.orderNum,jdbcType=VARCHAR},
+      Express_Num = #{record.expressNum,jdbcType=VARCHAR},
+      Express_Company = #{record.expressCompany,jdbcType=VARCHAR},
+      Express_Cost = #{record.expressCost,jdbcType=DOUBLE},
+      Update_User = #{record.updateUser,jdbcType=VARCHAR},
+      Update_Time = #{record.updateTime,jdbcType=VARCHAR},
+      Express_ZT = #{record.expressZt,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="zxs.ssm.po.ExpressInfo" >
+    update express_info
+    <set >
+      <if test="expressCompany != null" >
+        Express_Company = #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCost != null" >
+        Express_Cost = #{expressCost,jdbcType=DOUBLE},
+      </if>
+      <if test="updateUser != null" >
+        Update_User = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        Update_Time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expressZt != null" >
+        Express_ZT = #{expressZt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Order_Num = #{orderNum,jdbcType=VARCHAR}
+      and Express_Num = #{expressNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zxs.ssm.po.ExpressInfo" >
+    update express_info
+    set Express_Company = #{expressCompany,jdbcType=VARCHAR},
+      Express_Cost = #{expressCost,jdbcType=DOUBLE},
+      Update_User = #{updateUser,jdbcType=VARCHAR},
+      Update_Time = #{updateTime,jdbcType=VARCHAR},
+      Express_ZT = #{expressZt,jdbcType=INTEGER}
+    where Order_Num = #{orderNum,jdbcType=VARCHAR}
+      and Express_Num = #{expressNum,jdbcType=VARCHAR}
+  </update>
+</mapper>

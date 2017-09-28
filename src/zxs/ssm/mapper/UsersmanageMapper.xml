@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zxs.ssm.mapper.UsersmanageMapper" >
+  <resultMap id="BaseResultMap" type="zxs.ssm.po.Usersmanage" >
+    <result column="User_Id" property="userId" jdbcType="VARCHAR" />
+    <result column="User_name" property="userName" jdbcType="VARCHAR" />
+    <result column="User_cellphone" property="userCellphone" jdbcType="VARCHAR" />
+    <result column="User_tel" property="userTel" jdbcType="VARCHAR" />
+    <result column="User_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="SR_name" property="srName" jdbcType="VARCHAR" />
+    <result column="Dep_name" property="depName" jdbcType="VARCHAR" />
+    <result column="User_rname" property="userRname" jdbcType="VARCHAR" />
+    <result column="Dep_Id" property="depId" jdbcType="VARCHAR" />
+    <result column="SR_reid" property="srReid" jdbcType="VARCHAR" />
+    <result column="SR_Id" property="srId" jdbcType="INTEGER" />
+    <result column="User_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="User_idcard" property="userIdcard" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    User_Id, User_name, User_cellphone, User_tel, User_email, SR_name, Dep_name, User_rname, 
+    Dep_Id, SR_reid, SR_Id, User_sex, User_idcard
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="zxs.ssm.po.UsersmanageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from usersmanage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="zxs.ssm.po.UsersmanageExample" >
+    delete from usersmanage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="zxs.ssm.po.Usersmanage" >
+    insert into usersmanage (User_Id, User_name, User_cellphone, 
+      User_tel, User_email, SR_name, 
+      Dep_name, User_rname, Dep_Id, 
+      SR_reid, SR_Id, User_sex, 
+      User_idcard)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userCellphone,jdbcType=VARCHAR}, 
+      #{userTel,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{srName,jdbcType=VARCHAR}, 
+      #{depName,jdbcType=VARCHAR}, #{userRname,jdbcType=VARCHAR}, #{depId,jdbcType=VARCHAR}, 
+      #{srReid,jdbcType=VARCHAR}, #{srId,jdbcType=INTEGER}, #{userSex,jdbcType=VARCHAR}, 
+      #{userIdcard,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="zxs.ssm.po.Usersmanage" >
+    insert into usersmanage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        User_Id,
+      </if>
+      <if test="userName != null" >
+        User_name,
+      </if>
+      <if test="userCellphone != null" >
+        User_cellphone,
+      </if>
+      <if test="userTel != null" >
+        User_tel,
+      </if>
+      <if test="userEmail != null" >
+        User_email,
+      </if>
+      <if test="srName != null" >
+        SR_name,
+      </if>
+      <if test="depName != null" >
+        Dep_name,
+      </if>
+      <if test="userRname != null" >
+        User_rname,
+      </if>
+      <if test="depId != null" >
+        Dep_Id,
+      </if>
+      <if test="srReid != null" >
+        SR_reid,
+      </if>
+      <if test="srId != null" >
+        SR_Id,
+      </if>
+      <if test="userSex != null" >
+        User_sex,
+      </if>
+      <if test="userIdcard != null" >
+        User_idcard,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCellphone != null" >
+        #{userCellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="srName != null" >
+        #{srName,jdbcType=VARCHAR},
+      </if>
+      <if test="depName != null" >
+        #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="userRname != null" >
+        #{userRname,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null" >
+        #{depId,jdbcType=VARCHAR},
+      </if>
+      <if test="srReid != null" >
+        #{srReid,jdbcType=VARCHAR},
+      </if>
+      <if test="srId != null" >
+        #{srId,jdbcType=INTEGER},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null" >
+        #{userIdcard,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="zxs.ssm.po.UsersmanageExample" resultType="java.lang.Integer" >
+    select count(*) from usersmanage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update usersmanage
+    <set >
+      <if test="record.userId != null" >
+        User_Id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        User_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userCellphone != null" >
+        User_cellphone = #{record.userCellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userTel != null" >
+        User_tel = #{record.userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userEmail != null" >
+        User_email = #{record.userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srName != null" >
+        SR_name = #{record.srName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depName != null" >
+        Dep_name = #{record.depName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userRname != null" >
+        User_rname = #{record.userRname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depId != null" >
+        Dep_Id = #{record.depId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srReid != null" >
+        SR_reid = #{record.srReid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srId != null" >
+        SR_Id = #{record.srId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userSex != null" >
+        User_sex = #{record.userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userIdcard != null" >
+        User_idcard = #{record.userIdcard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update usersmanage
+    set User_Id = #{record.userId,jdbcType=VARCHAR},
+      User_name = #{record.userName,jdbcType=VARCHAR},
+      User_cellphone = #{record.userCellphone,jdbcType=VARCHAR},
+      User_tel = #{record.userTel,jdbcType=VARCHAR},
+      User_email = #{record.userEmail,jdbcType=VARCHAR},
+      SR_name = #{record.srName,jdbcType=VARCHAR},
+      Dep_name = #{record.depName,jdbcType=VARCHAR},
+      User_rname = #{record.userRname,jdbcType=VARCHAR},
+      Dep_Id = #{record.depId,jdbcType=VARCHAR},
+      SR_reid = #{record.srReid,jdbcType=VARCHAR},
+      SR_Id = #{record.srId,jdbcType=INTEGER},
+      User_sex = #{record.userSex,jdbcType=VARCHAR},
+      User_idcard = #{record.userIdcard,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
